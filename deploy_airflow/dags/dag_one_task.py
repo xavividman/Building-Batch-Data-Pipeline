@@ -10,7 +10,7 @@ def send(context):
     read_data = read_config()
     credential = read_data["SMTP"]
     gmail_secret = credential["GMAIL_SECRET"]
-    email = 'xavividman96@gmail.com'
+    email = 'your_email@gmail.com'
     print(gmail_secret)
     try:
         x = smtplib.SMTP('smtp.gmail.com', 587)
