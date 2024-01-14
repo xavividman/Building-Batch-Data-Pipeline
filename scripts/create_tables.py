@@ -17,6 +17,12 @@ user = conn_data["USER"]
 password = conn_data["PASSWORD"]
 schema = conn_data["SCHEMA"]
 
+#----------------------CREATE SCHEMA-----------------------
+def create_schema():
+    with psycopg2.connect(host=host, port=port, user=user, password=password, database=database) as conn:
+        with conn.cursor() as cursor:
+            cursor.execute("CREATE SCHEMA IF NOT EXISTS market_schema;")
+
 
 def create_companies_table():
     query = f"""
@@ -55,6 +61,7 @@ def create_stock_prices_table():
 
 
 def main():
+    create_schema()
     create_companies_table()
     create_stock_prices_table()
 
