@@ -31,7 +31,7 @@ def send(context):
 
 default_args={
     'owner': 'Xavier Vidman',
-    'retries': 5,
+    'retries': 0,
     'retry_delay': timedelta(minutes=3)
 }
 
@@ -40,7 +40,7 @@ with DAG(
     default_args = default_args,
     dag_id = 'id-01-incremental-etl',
     description = 'incremental etl in one task',
-    start_date = datetime(2024,1,1,0),
+    start_date = datetime(2024,1,9,0),
     schedule_interval = '@hourly'
     ) as dag:
 
