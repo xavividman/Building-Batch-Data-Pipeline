@@ -73,6 +73,20 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+  
+  postgres_db_data:
+    container_name: postgres_db_data
+    image: postgres:15.3
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: market_db
+    ports:
+      - 5433:5432
+    volumes:
+      - market_db_data:/var/lib/postgresql/data
 
 volumes:
   postgres-db-volume:
+  market_db_data:

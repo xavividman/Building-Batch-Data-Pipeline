@@ -3,7 +3,6 @@ import yfinance as yf
 import numpy as np
 import sqlalchemy as sa
 import configparser
-import redshift_connector
 
 from datetime import datetime, timedelta
 from airflow import DAG
@@ -22,15 +21,14 @@ def read_config():
     return config
 
 conn_data = read_config()
-conn_data = conn_data["Redshift"]
+conn_data = conn_data["PostgreSQL"]
 
 host = conn_data["HOST"]
 port = conn_data["PORT"]
 database = conn_data["DATABASE"]
 user = conn_data["USER"]
 password = conn_data["PASSWORD"]
-
-schema = f"{user}_schema"
+schema = conn_data["SCHEMA"]
 
 #----------------------PARAMETERS-------------------------
 company_symbol = ['AAPL', 'AMZN', 'MSFT']
